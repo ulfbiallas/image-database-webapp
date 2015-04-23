@@ -1,0 +1,7 @@
+<table ng-controller="imageCollectionController">
+<tr ng-repeat="image in images">
+<td><img src="http://localhost:8080/image/{{image.id}}/thumbnail"></img></td>
+<td>{{image.id}}</td>
+<td>{{image.caption}}</td>
+</tr>
+</table>
