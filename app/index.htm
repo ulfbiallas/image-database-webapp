@@ -1,0 +1,42 @@
+<html ng-app="image-database-webapp">
+<head>
+	<meta charset="utf8" />
+	<title>Image Database</title>
+
+	<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+
+	<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../bower_components/angular/angular.min.js"></script>
+	<script src="../bower_components/angular-route/angular-route.min.js"></script>
+	<script src="../bower_components/angular-resource/angular-resource.min.js"></script>
+
+
+	<script src="src/app.js"></script>
+
+</head>
+<body>
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Image Database</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#images">Images</a></li>
+            <li><a href="#tags">Tags</a></li>
+			<li><a href="#upload">Upload Image</a></li>
+			</ul>
+        </div>
+      </div>
+    </div>
+
+	<br><br><br><br><br>
+
+<div ng-view></div>
+
+</body>
+</html>
