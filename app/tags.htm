@@ -1,6 +1,8 @@
-<table ng-controller="tagCollectionController">
-<tr ng-repeat="tag in tags">
+<center>
+<table width="300" ng-controller="tagCollectionController">
+<tr ng-repeat="tag in tags | orderBy: '-popularity'">
 <td>{{tag.name}}</td>
-<td>{{tag.popularity}}</td>
+<td>({{tag.popularity}})</td>
 </tr>
 </table>
+<center>
