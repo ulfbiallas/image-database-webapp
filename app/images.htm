@@ -4,8 +4,10 @@
 <div ng-repeat="image in images">
 
 <div>
+<a href="#image/{{image.id}}">
 <img src="http://localhost:8080/image/{{image.id}}/thumbnail"></img><br>
 {{image.caption}}
+</a>
 </div>
 <br><br>
 
