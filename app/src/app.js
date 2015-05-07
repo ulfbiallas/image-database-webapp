@@ -38,8 +38,10 @@ app.controller('imageCollectionController', function($scope, $http){
 
 
 
-app.controller('imageController', function ($scope, $routeParams) {
-	$scope.imageUrl = 'http://localhost:8080/image/'+$routeParams.imageId+'/view';
+app.controller('imageController', function ($scope, $http, $routeParams) {
+	$http.get('http://localhost:8080/image/'+$routeParams.imageId).then(function(image) {
+		$scope.image = image.data;
+	});
 });
 
 

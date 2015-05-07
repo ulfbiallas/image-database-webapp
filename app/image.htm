@@ -1,7 +1,15 @@
 <div ng-controller="imageController">
 
 <center>
-<img src="{{imageUrl}}"></img>
+<h2>{{image.caption}}</h2>
+
+<a href="http://localhost:8080/image/{{image.id}}/view">
+<img src="http://localhost:8080/image/{{image.id}}/view/thumbnail"></img><br>
+</a>
+
+<br><br>
+{{image.description}}
+
 </center>
 
 </div>
