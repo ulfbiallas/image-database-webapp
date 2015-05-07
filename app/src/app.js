@@ -39,7 +39,7 @@ app.controller('imageCollectionController', function($scope, $http){
 
 
 app.controller('imageController', function ($scope, $routeParams) {
-	$scope.imageUrl = 'http://localhost:8080/image/'+$routeParams.imageId;
+	$scope.imageUrl = 'http://localhost:8080/image/'+$routeParams.imageId+'/view';
 });
 
 
