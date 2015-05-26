@@ -8,7 +8,14 @@
 </a>
 
 <br><br>
+
 {{image.description}}
+
+<br><br>
+
+<span ng-repeat="tag in image.tags">
+<a href="#tag/{{tag}}">{{tag}}</a><span ng-show="!$last"> | </span>
+</span>
 
 </center>
 
