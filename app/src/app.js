@@ -22,6 +22,10 @@ app.config(function($routeProvider) {
 			templateUrl : 'tags.htm',
 			controller  : 'tagCollectionController'
 		})
+		.when('/tag/:tagName', {
+			templateUrl : 'tag.htm',
+			controller  : 'tagController'
+		})
 		.when('/upload', {
 			templateUrl : 'upload.htm',
 			controller  : 'uploadController'
@@ -49,6 +53,14 @@ app.controller('imageController', function ($scope, $http, $routeParams) {
 app.controller('tagCollectionController', function($scope, $http){
 	$http.get('http://localhost:8080/tag').then(function(tags) {
 		$scope.tags = tags.data;
+	});
+});
+
+
+
+app.controller('tagController', function($scope, $http, $routeParams){
+	$http.get('http://localhost:8080/tag/'+$routeParams.tagName).then(function(images) {
+		$scope.images = images.data;
 	});
 });
 
