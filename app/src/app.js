@@ -1,6 +1,6 @@
 
 
-var app = angular.module('image-database-webapp', ['ngRoute', 'ngResource']);
+var app = angular.module('image-database-webapp', ['ngRoute', 'ngResource', 'infinite-scroll']);
 
 
 

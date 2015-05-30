@@ -1,6 +1,7 @@
 <div ng-controller="imageCollectionController">
 
 <center>
+<div infinite-scroll="loadMore()" infinite-scroll-distance="3" infinite-scroll-immediate-check="false">
 <div ng-repeat="image in images">
 
 <div>
@@ -12,6 +13,10 @@
 <br><br>
 
 </div>
+
+<div style='clear: both;'></div>
+</div>
+
 <button ng-click="loadMore()">load more</button>
 </center>
 
