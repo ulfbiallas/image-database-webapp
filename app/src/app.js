@@ -35,9 +35,17 @@ app.config(function($routeProvider) {
 
 
 app.controller('imageCollectionController', function($scope, $http){
-	$http.get('http://localhost:8080/image').then(function(images) {
-		$scope.images = images.data;
-	});
+    $scope.images = []
+    $scope.page = 0
+
+    $scope.loadMore = function() {
+        $http.get('http://localhost:8080/image?page='+$scope.page).then(function(images) {
+            $scope.images = $scope.images.concat(images.data)
+            $scope.page += 1
+        });
+    }
+
+    $scope.loadMore()
 });
 
 
