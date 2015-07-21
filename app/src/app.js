@@ -34,6 +34,18 @@ app.config(function($routeProvider) {
 
 
 
+app.controller('loginController', function($scope, $http){
+    $scope.login = function() {
+        console.log("login: ")
+        if ($scope.user != null) {
+            console.log("username: " + $scope.user.name)
+            console.log("password: " + $scope.user.password)
+        }
+    }
+});
+
+
+
 app.controller('imageCollectionController', function($scope, $http){
     $scope.images = []
     $scope.page = 0

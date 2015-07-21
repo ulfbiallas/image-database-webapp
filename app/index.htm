@@ -35,12 +35,12 @@
                Login
                 <b class="caret"></b>
              </a>
-             <div class="dropdown-menu">
+             <div class="dropdown-menu" ng-controller="loginController">
                <form style="margin: 0px" accept-charset="UTF-8" action="#" method="POST">
                  <fieldset class='textbox' style="padding:10px">
-                   <input style="margin-top: 8px" type="text" name="username" placeholder="Username" />
-                   <input style="margin-top: 8px" type="password" name="password" placeholder="Passsword" />
-                   <input style="margin-top: 8px" type="submit" value="Log In" class="btn btn-default" />
+                   <input style="margin-top: 8px" type="text" placeholder="Username" ng-model="user.name" />
+                   <input style="margin-top: 8px" type="password" placeholder="Password" ng-model="user.password" />
+                   <button type="button" style="margin-top: 8px" class="btn btn-default" ng-click="login()">Log In</button>
                  </fieldset>
                </form>
              </div>
