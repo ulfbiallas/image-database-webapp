@@ -35,7 +35,9 @@ app.config(function($routeProvider) {
 
 
 app.controller('loginController', function($scope, $http, $base64){
-$scope.blalala = "wurst"
+    $scope.loginerror = "";
+    $scope.loggedOut = true;
+
     $scope.login = function() {
         console.log("login: ")
         console.log("vv: " + $scope.user)
@@ -50,14 +52,22 @@ $scope.blalala = "wurst"
             $http.get('http://localhost:8080/account/'+$scope.user.name).
             success(function(data, status, headers, config) {
                 console.log("success: " + data)
-                $scope.loggedIn = true
+                $scope.loggedOut = false
                 $scope.loggedInAs = $scope.user.name
+                $scope.loginerror = "";
             }).
             error(function(data, status, headers, config) {
                 console.log("error: " + status)
-                $scope.loggedIn = false
+                $scope.loggedOut = true
+                $scope.loginerror = "Login Error!";
             });
         }
+    }
+
+    $scope.logout = function() {
+        $scope.loginerror = "";
+        $scope.loggedOut = true;
+        $scope.loggedInAs = "";
     }
 });
 
