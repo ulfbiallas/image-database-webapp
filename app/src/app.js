@@ -34,30 +34,24 @@ app.config(function($routeProvider) {
 
 
 
-app.controller('loginController', function($scope, $http, $base64){
+app.controller('loginController', function($scope, $http, $base64, AuthService){
     $scope.loginerror = "";
     $scope.loggedOut = true;
 
     $scope.login = function() {
-        console.log("login: ")
-        console.log("vv: " + $scope.user)
         if ($scope.user != null) {
-            console.log("username: " + $scope.user.name)
-            console.log("password: " + $scope.user.password)
             var userpwstr = $scope.user.name + ":" + $scope.user.password
             var userpwstrBase64 = $base64.encode(userpwstr)
-            console.log("userpwstrBase64: " + userpwstrBase64)
 
             $http.defaults.headers.common['Authorization'] = 'Basic ' + userpwstrBase64
             $http.get('http://localhost:8080/account/'+$scope.user.name).
             success(function(data, status, headers, config) {
-                console.log("success: " + data)
                 $scope.loggedOut = false
                 $scope.loggedInAs = $scope.user.name
                 $scope.loginerror = "";
+                AuthService.setLoggedIn(true);
             }).
             error(function(data, status, headers, config) {
-                console.log("error: " + status)
                 $scope.loggedOut = true
                 $scope.loginerror = "Login Error!";
             });
@@ -68,14 +62,30 @@ app.controller('loginController', function($scope, $http, $base64){
         $scope.loginerror = "";
         $scope.loggedOut = true;
         $scope.loggedInAs = "";
+        AuthService.setLoggedIn(false);
     }
 });
 
 
 
-app.controller('imageCollectionController', function($scope, $http){
+app.service('AuthService', function($route) {
+    this.loggedIn = false
+    this.isLoggedIn = function() {
+        return this.loggedIn
+    };
+    this.setLoggedIn = function(loggedIn) {
+        this.loggedIn = loggedIn
+        $route.reload();
+    };
+});
+
+
+
+
+app.controller('imageCollectionController', function($scope, $http, AuthService){
     $scope.images = []
     $scope.page = 0
+    $scope.isLoggedIn = AuthService.isLoggedIn()
 
     $scope.loadMore = function() {
         $http.get('http://localhost:8080/image?page='+$scope.page).then(function(images) {
