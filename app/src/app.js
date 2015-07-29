@@ -18,6 +18,10 @@ app.config(function($routeProvider) {
 			templateUrl : 'image.htm',
 			controller  : 'imageController'
 		})
+ 		.when('/image/:imageId/view', {
+			templateUrl : 'imageview.htm',
+			controller  : 'imageViewController'
+		})
 		.when('/tag', {
 			templateUrl : 'tags.htm',
 			controller  : 'tagCollectionController'
@@ -104,6 +108,41 @@ app.controller('imageController', function ($scope, $http, $routeParams) {
 		$scope.image = image.data;
 	});
 });
+
+
+
+app.controller('imageViewController', function ($scope, $http, $routeParams) {
+    imageUrl = 'http://localhost:8080/image/'+$routeParams.imageId+'/view'
+    console.log(imageUrl)
+
+    $http.get(imageUrl).then(function(image) {
+        var data = image.data
+        console.log("type: " + typeof data);
+        console.log("len: " + data.length)
+
+        $http({
+            url: imageUrl,
+            method: 'GET',
+            responseType: 'arraybuffer'
+        }).success(function(resp, config1, config2, config3) {
+            $scope.imageData = btoa(convertLargeUint8ArrayToString(new Uint8Array(resp)));
+            console.log($scope.imageData)
+        });
+    });
+
+});
+
+
+
+// src: http://stackoverflow.com/questions/12710001/how-to-convert-uint8-array-to-base64-encoded-string
+function convertLargeUint8ArrayToString(array){
+    var chunkSize = 0x8000;
+    var charArray = [];
+    for (var i=0; i<array.length; i+=chunkSize) {
+        charArray.push(String.fromCharCode.apply(null, array.subarray(i, i+chunkSize)));
+    }
+    return charArray.join("");
+}
 
 
 
