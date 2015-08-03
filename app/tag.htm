@@ -4,11 +4,13 @@
 <div ng-repeat="image in images">
 
 <div>
-<a href="#image/{{image.id}}">
 <img src="http://localhost:8080/{{image.thumbnailUrl}}"></img><br>
-{{image.caption}}
-</a>
+{{image.caption}}<br>
+<div ng-show="isLoggedIn">
+<a href="#image/{{image.id}}">Open</a>
 </div>
+</div>
+
 <br><br>
 
 </div>

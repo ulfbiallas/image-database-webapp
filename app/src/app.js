@@ -54,11 +54,13 @@ app.controller('tagCollectionController', function($scope, $http){
 
 
 
-app.controller('tagController', function($scope, $http, $routeParams){
-	$http.get('http://localhost:8080/tag/'+$routeParams.tagName).then(function(images) {
-		$scope.images = images.data;
-	});
-});
+app.controller('tagController', function($scope, $http, $routeParams, AuthService){
+    $scope.isLoggedIn = AuthService.isLoggedIn()
+
+    $http.get('http://localhost:8080/tag/'+$routeParams.tagName).then(function(images) {
+        $scope.images = images.data
+    })
+})
 
 
 
